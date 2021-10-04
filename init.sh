@@ -3,7 +3,7 @@
  # @author: Wibus
  # @Date: 2021-10-01 04:59:38
  # @LastEditors: Wibus
- # @LastEditTime: 2021-10-03 08:24:52
+ # @LastEditTime: 2021-10-05 06:57:58
  # Coding With IU
 ###
 clear
@@ -14,6 +14,7 @@ SYS_BIT=$(getconf LONG_BIT)
 CPU_INFO=$(getconf _NPROCESSORS_ONLN)
 
 # Colorful Text
+dark="\033[0;30m"
 dark_gray="\033[1;30m"  
 blue="\033[0;34m"  
 light_blue="\033[1;34m"  
@@ -45,6 +46,7 @@ GetStep(){
     echo "2. vim"
     echo "3. mongodb"
     echo "4. mysql"
+    echo "5. cloc"
 
     read steps
 }
@@ -103,6 +105,11 @@ MySQLInstall(){
     echo "$dark_gray"
 }
 
+ClocInstall(){
+    echo "$purple cloc installing... $dark"
+    brew update
+    brew install cloc
+}
 
 Main(){
     startTime=`date +%s`
@@ -121,6 +128,8 @@ Main(){
         MongodbInstall
     elif [ "$steps" == "4" ];then
         MySQLInstall
+    elif [ "$steps" == '5' ];then
+        ClocInstall
     fi
 }
 
